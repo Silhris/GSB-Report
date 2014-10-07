@@ -55,6 +55,6 @@ $app->get('/practitioners/search/', function() use ($app) {
 // Results page for drugs
 $app->post('/practitioners/results/', function(Request $request) use ($app) {
     $typeId = $request->request->get('type');
-    $practitioners = $app['dao.practitioner']->findAllByFamily($typeId);
+    $practitioners = $app['dao.practitioner']->findAllByType($typeId);
     return $app['twig']->render('practitioners_results.html.twig', array('practitioners' => $practitioners));
 });

@@ -7,7 +7,7 @@ use GSB\Domain\Practitioner;
 class PractitionerDAO extends DAO
 {
     
-    private $practitionTypeDAO;
+    private $practitionerTypeDAO;
 
     public function setPractitionTypeDAO($practitionerTypeDAO) {
         $this->practitionerTypeDAO = $practitionerTypeDAO;
@@ -55,7 +55,7 @@ class PractitionerDAO extends DAO
      * @return array The list of drugs.
      */
     public function findAllByType($typeId) {
-        $sql = "select * from practitioner where practitioner_type_id=? order by practitioner_type_name";
+        $sql = "select * from practitioner where practitioner_type_id=? order by practitioner_name";
         $result = $this->getDb()->fetchAll($sql, array($typeId));
         
         // Convert query result to an array of domain objects
@@ -75,6 +75,9 @@ class PractitionerDAO extends DAO
      * @return \GSB\Domain\Family
      */
     protected function buildDomainObject($row) {
+        $typeId = $row['practitioner_type_id'];
+        $type = $this->practitionerTypeDAO->find($typeId);
+        
         $practitioner = new Practitioner();
         $practitioner->setId($row['practitioner_id']);
         $practitioner->setName($row['practitioner_name']);
@@ -83,6 +86,7 @@ class PractitionerDAO extends DAO
         $practitioner->setZipCode($row['practitioner_zip_code']);
         $practitioner->setCity($row['practitioner_city']);
         $practitioner->setNotoCoeff($row['notoriety_coefficient']);
+        $practitioner->setType($type);
         
         return $practitioner;
     }
