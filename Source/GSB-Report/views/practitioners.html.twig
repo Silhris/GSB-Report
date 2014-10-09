@@ -18,7 +18,7 @@
             </thead>
             {% for practitioner in practitioners %}
                 <tr>
-                    <td>{{ practitioner.name }}</td>
+                    <td><a href="/practitioners/{{ practitioner.id }}">{{ practitioner.name }}</td>
                     <td>{{ practitioner.firstName }}</td>
                     <td>{{ practitioner.city }}</td>
                     <td>{{ practitioner.type.typeName }}</td>
