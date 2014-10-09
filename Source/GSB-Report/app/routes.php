@@ -66,3 +66,11 @@ $app->get('/login', function(Request $request) use ($app) {
         'last_username' => $app['session']->get('_security.last_username'),
     ));
 })->bind('login');  // named route so that path('login') works in Twig templates
+
+// Login form
+$app->get('/account', function(Request $request) use ($app) {
+    return $app['twig']->render('account.html.twig', array(
+        'error'         => $app['security.last_error']($request),
+        'last_username' => $app['session']->get('_security.last_username'),
+    ));
+})->bind('account');  // named route so that path('login') works in Twig templates

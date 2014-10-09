@@ -7,6 +7,8 @@ use Symfony\Component\Debug\ExceptionHandler;
 ExceptionHandler::register();
 
 // Register service providers.
+$app->register(new Silex\Provider\FormServiceProvider());
+$app->register(new Silex\Provider\TranslationServiceProvider());
 $app->register(new Silex\Provider\DoctrineServiceProvider());
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
@@ -52,5 +54,5 @@ $app['dao.practitioner'] = $app->share(function ($app) {
 });
 
 $app['dao.visitor'] = $app->share(function () use ($app) {
-                return new GSB\DAO\VisitorDAO($app['db']);
-            });
+    return new GSB\DAO\VisitorDAO($app['db']);
+});

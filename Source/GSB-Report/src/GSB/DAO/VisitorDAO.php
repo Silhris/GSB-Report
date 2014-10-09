@@ -68,19 +68,19 @@ class VisitorDAO extends DAO implements UserProviderInterface
      * @return \GSB\Domain\User
      */
     protected function buildDomainObject($row) {
-        $user = new Visitor();
-        $user->setId($row['visitor_id']);
-        $user->setLastName($row['visitor_last_name']);
-        $user->setFirstName($row['visitor_first_name']);
-        $user->setAddress($row['visitor_address']);
-        $user->setZipCode($row['visitor_zip_code']);
-        $user->setCity($row['visitor_city']);
-        $user->setHiringDate($row['hiring_date']);
-        $user->setUsername($row['user_name']);
-        $user->setPassword($row['password']);
-        $user->setSalt($row['salt']);
-        $user->setRole($row['role']);
-        $user->setType($row['visitor_type']);
-        return $user;
+        $visitor = new Visitor();
+        $visitor->setId($row['visitor_id']);
+        $visitor->setLastName($row['visitor_last_name']);
+        $visitor->setFirstName($row['visitor_first_name']);
+        $visitor->setAddress($row['visitor_address']);
+        $visitor->setZipCode($row['visitor_zip_code']);
+        $visitor->setCity($row['visitor_city']);
+        $visitor->setHiringDate($row['hiring_date']);
+        $visitor->setUsername($row['user_name']);
+        $visitor->setPassword($row['password']);
+        $visitor->setSalt($row['salt']);
+        $visitor->setRole($row['role']);
+        $visitor->setType($row['visitor_type']);
+        return $visitor;
     }
 }
