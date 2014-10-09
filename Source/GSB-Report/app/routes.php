@@ -58,3 +58,11 @@ $app->post('/practitioners/results/', function(Request $request) use ($app) {
     $practitioners = $app['dao.practitioner']->findAllByType($typeId);
     return $app['twig']->render('practitioners_results.html.twig', array('practitioners' => $practitioners));
 });
+
+// Login form
+$app->get('/login', function(Request $request) use ($app) {
+    return $app['twig']->render('login.html.twig', array(
+        'error'         => $app['security.last_error']($request),
+        'last_username' => $app['session']->get('_security.last_username'),
+    ));
+})->bind('login');  // named route so that path('login') works in Twig templates
