@@ -74,3 +74,9 @@ $app->get('/account', function(Request $request) use ($app) {
         'last_username' => $app['session']->get('_security.last_username'),
     ));
 })->bind('account');  // named route so that path('login') works in Twig templates
+
+
+//$token = $app['security']->getToken();
+//if(null != $token)
+//  $visitor = $token->getUser();
+//echo $visitor->getUsername()
