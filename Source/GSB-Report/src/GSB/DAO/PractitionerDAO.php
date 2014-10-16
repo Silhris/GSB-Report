@@ -6,7 +6,6 @@ use GSB\Domain\Practitioner;
 
 class PractitionerDAO extends DAO
 {
-    
     private $practitionerTypeDAO;
 
     public function setPractitionTypeDAO($practitionerTypeDAO) {

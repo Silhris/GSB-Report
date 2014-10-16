@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpFoundation\Request;
 
+
 // Home page
 $app->get('/', function () use ($app) {
     return $app['twig']->render('index.html.twig');
@@ -58,6 +59,14 @@ $app->post('/practitioners/results/', function(Request $request) use ($app) {
     $practitioners = $app['dao.practitioner']->findAllByType($typeId);
     return $app['twig']->render('practitioners_results.html.twig', array('practitioners' => $practitioners));
 });
+
+//List of all reports
+$app->get('/reports/', function() use ($app) {
+    $reports = $app['dao.report']->findAll();
+    return $app['twig']->render('reports.html.twig', array('reports' => $reports));
+});
+
+
 
 // Login form
 $app->get('/login', function(Request $request) use ($app) {
