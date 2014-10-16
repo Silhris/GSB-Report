@@ -62,3 +62,4 @@ $app['dao.report'] = $app->share(function () use ($app) {
     $reportDAO->setPractitionerDAO($app['dao.practitioner']);
     return $reportDAO;
 });
+
