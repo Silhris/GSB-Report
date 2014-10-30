@@ -60,6 +60,7 @@ $app['dao.visitor'] = $app->share(function () use ($app) {
 $app['dao.report'] = $app->share(function () use ($app) {
     $reportDAO = new GSB\DAO\VisitReportDAO($app['db']);
     $reportDAO->setPractitionerDAO($app['dao.practitioner']);
+    $reportDAO->setVisitorDAO($app['dao.visitor']);
     return $reportDAO;
 });
 

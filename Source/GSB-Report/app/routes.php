@@ -65,6 +65,19 @@ $app->get('/reports/', function() use ($app) {
     return $app['twig']->render('reports.html.twig', array('reports' => $reports));
 });
 
+//Add a report
+$app->get('/report/add/', function() use ($app) {
+    $practionners = $app['dao.practitioner']->findAll();
+    return $app['twig']->render('reports_add.html.twig', array('practitionners' => $practionners));
+});
+
+//Manque le visitor_id
+$app->post('/report/add/', function(Request $request) use ($app) {
+    $addReport = $request->request->get('addReport');
+    $app['db']->query('insert into VISIT_REPORT (practitioner_id, visitor_id, reporting_date, assessment, purpose) VALUES ('.$addReport['practitioner_id'].', 1, "'.$addReport['reporting_date'].'","'.$addReport['assessment'].'", "'.$addReport['purpose'].'")');
+    return $app['twig']->render('reports_add.html.twig', array('report' => $addReport));
+});
+
 // Detailed info about an article
 //Tout modifier #Fleme#PlusTard
 $app->match('/article/{id}', function ($id, Request $request) use ($app) {

@@ -65,7 +65,8 @@ class VisitReportDAO extends DAO
      *
      * @return \GSB\Domain\VisitReport
      */
-    protected function buildDomainObject($row) {
+    public function buildDomainObject($row) {
+        
         $practitionerId = $row['practitioner_id'];
         $practitioner = $this->practitionerDAO->find($practitionerId);
 

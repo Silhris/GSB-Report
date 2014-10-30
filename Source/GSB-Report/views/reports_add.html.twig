@@ -1,3 +1,72 @@
 {% extends "layout.html.twig" %}
+{% set reportMenu = true %}
 
+{% block title %}Nouveau rapport de visite{% endblock %}
 
+{% block content %}
+<h2 class="text-center">{{ block('title') }}</h2>
+
+{% if practitionners is defined %}
+        <div class="container">
+            <div class="well">
+                <form name="addReport" class="form-horizontal" action="" method="post">
+                    <div class="form-group">
+                        <label class="col-sm-4 col-md-5 control-label required" for="addReport_practitioner">
+                            Praticiens
+                        </label>
+                        <div class="col-sm-6 col-md-4">
+                            <select class="form-control" name="addReport[practitioner_id]">
+                                {% for practitionner in practitionners %}
+                                    <option value={{practitionner.id}} >{{practitionner.firstName ~ ' ' ~ practitionner.name}}</option>
+                                {% endfor %} 
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-4 col-md-5 control-label required" >
+                            Date
+                        </label>
+                        <div class="col-sm-6 col-md-4">
+                            <input class="form-control" type="date" required="required" name="addReport[reporting_date]"/>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-4 col-md-5 control-label required" for="addReport_purpose">
+                            Motif
+                        </label>
+                        <div class="col-sm-6 col-md-4">
+                        <textarea class="form-control" row="4" required="required" name="addReport[purpose]"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-4 col-md-5 control-label required" for="addReport_assessment">
+                            Bilan
+                        </label>
+                        <div class="col-sm-6 col-md-4">
+                            <textarea class="form-control" row="4" required="required" name="addReport[assessment]"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-sm-6 col-md-4">
+                            <input type="hidden" class="form-control" row="4" required="required" name="addReport[visitor_id]" value=""></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-md-offset-5 col-sm-3">
+                            <div>
+                                <button class="btn btn-primary" name="addReport[add]" type="submit">Ajouter</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+{% elseif report %}
+    <div class="alert alert-success">Le rapport a bien été ajouté à la base</div>
+{% endif %}   
+{% endblock %}
